@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Job provider</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+  <!-- Registration Form -->
+  <div id="formContainer" class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
+    <h2 class="text-2xl font-bold mb-6 text-center">Job Provider</h2>
+    <form id="registrationForm" class="space-y-4">
+      <div>
+        <label class="block text-gray-700 font-semibold mb-1">Full Name</label>
+        <input type="text" id="name" placeholder="Your name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" required />
+      </div>
+     
+    <div>
+        <label class="block text-gray-700 font-semibold mb-1"> Address</label>
+        <input type="Adress" placeholder="Enter your address" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" required />
+      </div>
+      <div>
+        <label for="phone" class="block text-gray-700 font-semibold mb-1">Phone Number</label>
+        <input type="tel" id="phone" placeholder="Enter 10-digit number" pattern="[0-9]{10}" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" required />
+      </div>
+      
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">Create Account</button>
+    </form>
+  </div>
+
+  
+  <div id="profileCard" class="hidden bg-white p-8 rounded-2xl shadow-lg w-full max-w-md text-center">
+    <img id="profileImage" class="w-32 h-32 mx-auto rounded-full object-cover mb-4" src="" alt="Profile Image">
+    <h2 id="displayName" class="text-2xl font-bold"></h2>
+    <p id="displayProfession" class="text-gray-600 text-lg mt-1"></p>
+    
+  </div>
+
+  <script>
+    const form = document.getElementById('registrationForm');
+    const formContainer = document.getElementById('formContainer');
+    const profileCard = document.getElementById('profileCard');
+    const nameField = document.getElementById('name');
+    const professionField = document.getElementById('profession');
+    const fileInput = document.getElementById('fileselect');
+    // const phoneNumber=document.getElementById('phone')
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+     
+      const name = nameField.value;
+      const profession = professionField.value;
+      
+      const file = fileInput.files[0];
+
+     
+      document.getElementById('displayName').textContent = name;
+      document.getElementById('displayProfession').textContent = profession;
+      // document.getElementById('displayPhone').textContent=phone;
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          document.getElementById('profileImage').src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+
+      formContainer.classList.add('hidden');
+      profileCard.classList.remove('hidden');
+    });
+  </script>
+
+</body>
+</html>

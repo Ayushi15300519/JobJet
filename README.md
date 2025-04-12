@@ -7,9 +7,7 @@
 - User Authentication (Login/Signup for Job Seekers and Recruiters)
 - Job Posting and Management (for Recruiters)
 - Job Search with Filters (for Job Seekers)
-- Resume Upload & Profile Creation
-- Application Tracking
-- Admin Dashboard
+- Profile Creation
 - Responsive Design
 
 ## Tech Stack

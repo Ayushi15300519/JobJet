@@ -13,7 +13,7 @@ color: aliceblue;
     animation-fill-mode: backwards;
     animation-timing-function: ease-in;
 }
-#about{
+section{
     font-size: large;
     display: flex;
     animation: fadein 5s;
@@ -114,4 +114,21 @@ color: aliceblue;
   }
   .hamburger.active span:nth-child(3) {
     transform: translateY(-9px) rotate(-45deg);
+  }
+  button {
+    background:#0f2027;
+    border: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 5px #2c5364;
+    transition: all 0.2s ease;
+    font-weight: bold;
+    margin:0px 100px;
+  }
+  button a{color:white;}
+  button:active {
+    box-shadow: 0 2px #2c5364;
+    transform: translateY(3px);
   }

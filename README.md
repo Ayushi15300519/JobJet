@@ -15,27 +15,24 @@
 ## Tech Stack
 
 *Frontend:*
-- React.js / Next.js
-- Tailwind CSS / Bootstrap
+- React.js 
+- Tailwind CSS 
 - Axios for API requests
 
 *Backend:*
 - Node.js with Express.js
-- MongoDB / PostgreSQL
-- JWT for Authentication
+- MongoDB 
 - RESTful API
 
 *Deployment:*
-- Frontend: Vercel / Netlify
-- Backend: Render / Heroku
-- Database: MongoDB Atlas / Supabase
+- Database: MongoDB 
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js & npm/yarn
-- MongoDB or PostgreSQL setup
+- Node.js & npm
+- MongoDB setup
 
 ### Installation
 

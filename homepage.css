@@ -10,14 +10,14 @@ body{
     .content{
         animation: fadein 4s;
         animation-fill-mode: backwards;
-        animation-timing-function: ease-in;
+        animation-timing-function: ease-in-out;
     }
     section{
         font-size: large;
         display: flex;
         animation: fadein 5s;
         animation-fill-mode: backwards;
-        animation-timing-function: ease-in;
+        animation-timing-function: ease-in-out;
     }
     #about>div{
         margin:0px 200px 0px 50px;
@@ -35,7 +35,7 @@ body{
         width:130px;
         position:relative;
         animation-fill-mode: backwards;
-        animation-timing-function: ease-in;
+        animation-timing-function: ease-in-out;
     }
     @keyframes example{
         0%{ opacity:0;height:150px; width:150px; left:500px; top:300px;}

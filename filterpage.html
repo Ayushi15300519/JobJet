@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Filter Workers</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+
+  <h1 class="text-3xl font-bold mb-6 text-center">Find a Worker</h1>
+
+  <!-- Search and Filters -->
+  <div class="flex flex-wrap gap-4 justify-center mb-6">
+    <input type="text" id="searchName" placeholder="Search by name..." class="px-4 py-2 border rounded-lg w-60">
+    <select id="filterProfession" class="px-4 py-2 border rounded-lg">
+      <option value="">All Professions</option>
+      <option value="Electrician">Electrician</option>
+      <option value="Plumber">Plumber</option>
+      <option value="Carpenter">Carpenter</option>
+      <option value="Painter">Painter</option>
+    </select>
+    <select id="filterStatus" class="px-4 py-2 border rounded-lg">
+      <option value="">All Status</option>
+      <option value="Active">Active</option>
+      <option value="Busy">Busy</option>
+    </select>
+  </div>
+
+  <!-- Worker Cards -->
+  <div id="workerList" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+    <!-- Cards will be inserted by JavaScript -->
+  </div>
+
+  <script>
+   
+   const PASSWORD ="admin123" // Change this to your desired authentication password
+    const workers = [
+      { name: 'Rahul', profession: 'Electrician', phone: '9876543210', status: 'Active' },
+      { name: 'Amit', profession: 'Plumber', phone: '9876500000', status: 'Busy' },
+      { name: 'Sita', profession: 'Painter', phone: '9876512345', status: 'Active' },
+      { name: 'Mohan', profession: 'Carpenter', phone: '9876598765', status: 'Busy' },
+    ];
+   
+
+    const listContainer = document.getElementById('workerList');
+    const filterProfession = document.getElementById('filterProfession');
+    const filterStatus = document.getElementById('filterStatus');
+    const searchName = document.getElementById('searchName');
+
+    function renderWorkers(data) {
+      listContainer.innerHTML = '';
+      if (data.length === 0) {
+        listContainer.innerHTML = '<p class="text-center col-span-full text-gray-600">No workers found.</p>';
+        return;
+      }
+
+      data.forEach((worker, index) => {
+        const card = document.createElement('div');
+        card.className = 'bg-white p-4 rounded-xl shadow text-center';
+
+        card.innerHTML = `
+          
+          <h2 class="text-xl font-semibold">${worker.name}</h2>
+          <p class="text-gray-600">${worker.profession}</p>
+          <p class="text-gray-500 text-sm">+91 ${worker.phone}</p>
+          <button onclick="updateStatus(${index})" class="mt-2 px-3 py-1 text-sm rounded-full ${worker.status === 'Active' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">
+            ${worker.status}
+          </button>
+        `;
+        listContainer.appendChild(card);
+      });
+    }
+
+    function filterWorkers() {
+      const prof = filterProfession.value.toLowerCase();
+      const stat = filterStatus.value.toLowerCase();
+      const nameSearch = searchName.value.toLowerCase();
+
+      const filtered = workers.filter(worker => {
+        return (prof === '' || worker.profession.toLowerCase() === prof) &&
+               (stat === '' || worker.status.toLowerCase() === stat) &&
+               (nameSearch === '' || worker.name.toLowerCase().includes(nameSearch));
+      });
+
+      renderWorkers(filtered);
+    }
+
+    // function updateStatus(index) {
+    //   const userPass = prompt("Enter registraion password to change status:");
+    //   if (userPass !== PASSWORD) {
+    //     alert("Authentication failed!");
+    //     return;
+    //   }
+
+    //   workers[index].status = workers[index].status === 'Active' ? 'Busy' : 'Active';
+    //   filterWorkers(); // Refresh filtered list with updated status
+    // }/
+    function updateStatus(index) {
+  const worker = workers[index];
+  const userPass = prompt("Enter Password to confirm status change");
+
+  if (userPass !== worker.name) {
+    alert("Incorrect name! Status update denied.");
+    return;
+  }
+
+  // Toggle status
+  worker.status = worker.status === 'Active' ? 'Busy' : 'Active';
+  filterWorkers(); // Re-render with updated data
+}
+
+    // Initial render
+    renderWorkers(workers);
+
+    // Event listeners
+    filterProfession.addEventListener('change', filterWorkers);
+    filterStatus.addEventListener('change', filterWorkers);
+    searchName.addEventListener('input', filterWorkers);
+  </script>
+
+</body>
+</html>
